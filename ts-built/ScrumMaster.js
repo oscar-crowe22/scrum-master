@@ -2,18 +2,18 @@
 // get random number from api based on list length
 // display result
 import fetch from "node-fetch";
-class ScrumMaster {
+export class ScrumMaster {
     currentMaster;
-    names;
+    names = ["roman", "jant", "romano", "tony", "oscar"];
     constructor(props) {
         this.currentMaster = props.currentMaster;
-        this.names = this.getNames();
     }
-    getNames() {
-        return ["roman", "jant", "romano", "tony"];
+    getValidNames() {
+        const validNames = this.names.filter((name) => name !== this.currentMaster);
+        return validNames;
     }
-    async generateRandomValue(names) {
-        const length = names.length;
+    async generateRandomValue() {
+        const length = this.names.length - 1;
         const requestBody = {
             jsonrpc: "2.0",
             method: "generateIntegers",
@@ -21,7 +21,7 @@ class ScrumMaster {
                 apiKey: "b2b17124-7289-4dfa-be4a-ba3eae856978",
                 n: 1,
                 min: 0,
-                max: length,
+                max: length - 1,
             },
             id: 42,
         };
@@ -33,12 +33,6 @@ class ScrumMaster {
             body: JSON.stringify(requestBody),
         });
         let jsonObject = (await response.json());
-        console.log(jsonObject.result.random.data);
-        return 1;
+        return jsonObject.result.random.data[0];
     }
 }
-const props = {
-    currentMaster: "oscar",
-};
-const scrumMaster = new ScrumMaster(props);
-scrumMaster.generateRandomValue(scrumMaster.names);
