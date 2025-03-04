@@ -8,7 +8,7 @@ async function runSelection() {
     const scrumMaster = new ScrumMaster(props);
     const value = await scrumMaster.generateRandomValue();
     const possibleScrumMasters = scrumMaster.getValidNames();
-    console.log(possibleScrumMasters[value]);
+    console.log("New ScrumMaster:", possibleScrumMasters[value]);
 }
 function getCurrentMaster() {
     const prompt = promptSync();
