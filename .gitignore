@@ -1,0 +1,4 @@
+src/secret.ts
+ts-built/secret.js
+node_modules
+tsconfig.json

@@ -2,6 +2,7 @@
 // get random number from api based on list length
 // display result
 import fetch from "node-fetch";
+import { API_KEY } from "./secret.js";
 export class ScrumMaster {
     currentMaster;
     names = ["roman", "jant", "romano", "tony", "oscar"];
@@ -18,7 +19,7 @@ export class ScrumMaster {
             jsonrpc: "2.0",
             method: "generateIntegers",
             params: {
-                apiKey: "b2b17124-7289-4dfa-be4a-ba3eae856978",
+                apiKey: API_KEY,
                 n: 1,
                 min: 0,
                 max: length - 1,
